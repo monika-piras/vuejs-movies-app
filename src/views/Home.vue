@@ -1,6 +1,7 @@
 <template>
   <div>
     <b-carousel
+      v-if="this.bannersFound && this.bannersFound.length > 0"
       id="carousel-1"
       v-model="slide"
       :interval="4000"
@@ -13,20 +14,18 @@
       @sliding-start="onSlideStart"
       @sliding-end="onSlideEnd"
     >
-      <b-carousel-slide v-for="film in this.topRatedFilms">
+      <b-carousel-slide v-for="film in this.bannersFound">
         <template v-slot:img>
           <img
-            @click="directDetails(film.id)"
-            style="cursor: pointer"
             class="d-block img-fluid-grow w-100 img-responsive"
-            v-bind:src="film.resolutions.original"
+            v-bind:src="film.resolutions.original.url"
             :key="film.id"
             alt="image slot"
           />
-          <h1 class="filmTitleStyle">{{ film.title }}</h1>
         </template>
       </b-carousel-slide>
     </b-carousel>
+
     <category-slider title="Adventure Movies" category="Adventure" />
     <category-slider title="Comedy Movies" category="Comedy" />
     <category-slider title="Romantic Movies" category="Romance" />
@@ -35,7 +34,6 @@
 
 <script>
 import CategorySlider from "@/components/CategorySlider.vue";
-
 export default {
   name: "Home",
   components: {
@@ -52,6 +50,11 @@ export default {
       bannersFound: [],
     };
   },
+  mounted() {
+  //  console.log("mounted");
+    this.getMoviesAllData();
+  },
+
   methods: {
     onSlideStart(slide) {
       this.sliding = true;
@@ -59,21 +62,17 @@ export default {
     onSlideEnd(slide) {
       this.sliding = false;
     },
-    directDetails(id) {
-      this.$router.push("/movieDetails/" + id);
-    },
-
     getMoviesRatingAverage() {
       return this.moviesRatingAverage.push(
-        this.$store.getters["filmsStore/getFilms"].filter(
-          (item) => item.rating.average === 7.4
-        )
+        this.$store.getters["filmsStore/getFilms"]
+          .filter((item) => item.rating.average >= 8)
+          .slice(0, 6)
       );
     },
 
     getMoviesAllData() {
       this.getMoviesRatingAverage();
-      console.log("MoviesRatingAverage-->>", this.MoviesRatingAverage);
+      console.log("MoviesRatingAverage-->>", this.moviesRatingAverage);
 
       for (const x of this.moviesRatingAverage) {
         for (const i of x) {
@@ -85,46 +84,31 @@ export default {
             })
             .then((data) => {
               const moviesAllData = data;
-              console.log("MoviesAllData", moviesAllData);
-
+              //  console.log("MoviesAllData", moviesAllData);
               const moviesDataBanners = [];
               for (const x of moviesAllData) {
                 if (x.type === "banner") {
                   moviesDataBanners.push(x);
                 }
               }
-
-              console.log("MoviesDataBanners-->", moviesDataBanners);
+              //  console.log("MoviesDataBanners-->", moviesDataBanners);
               const firstBannerOccurance = moviesDataBanners.find(function (
                 item
               ) {
                 return item.type === "banner";
               });
 
-              console.log("firstBannerOccurance--->", firstBannerOccurance);
-
-              this.bannersFound.push(firstBannerOccurance);
-              console.log("bannersFound-->>", this.bannersFound);
+              //  console.log("firstBannerOccurance--->", firstBannerOccurance);
+              if (firstBannerOccurance) {
+                this.bannersFound.push(firstBannerOccurance);
+              }
+              //  console.log("bannersFound-->>", this.bannersFound);
             })
-
             .catch(function (error) {
               console.log(error);
             });
         }
       }
-      return;
-    },
-
-    getMoviesDataBanners() {
-      this.getMoviesAllData();
-      return;
-    },
-  },
-
-  computed: {
-    topRatedFilms() {
-      this.getMoviesDataBanners();
-      return;
     },
   },
 };
@@ -144,7 +128,7 @@ li {
 }
 .img-responsive {
   max-width: 100%;
-  min-height: 115px;
+  height: 400px;
 }
 .filmTitleStyle {
   position: absolute;

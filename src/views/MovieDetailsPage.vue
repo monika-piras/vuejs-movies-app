@@ -8,7 +8,6 @@
       <div class="row">
         <div class="col style-col">
           <h1>{{ filmDetail.name }}</h1>
-      <!--    <p>{{ filmDetail.durata }} {{ filmDetail.year }}</p>  -->
           <p id="description">{{ filmDetail.summary.replace(/<\/?[^>]+(>|$)/g, "") }}</p>
           <div class="row runtime">
             <div class="col-2">RUNTIME:</div>
@@ -97,7 +96,7 @@ export default {
     },
     filmDetail() {
       return this.$store.getters["filmsStore/getFilmDetails"](this.paramID);
-    },
+    }
   },
 };
 </script>

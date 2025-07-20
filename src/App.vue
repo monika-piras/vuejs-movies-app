@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <NavigationBar />
-    <router-view />
+    <router-view v-if="this.$store.getters['filmsStore/getFilms'].length > 0" />
     <footer-component />
   </div>
 </template>
