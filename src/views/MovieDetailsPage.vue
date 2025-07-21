@@ -75,8 +75,6 @@ export default {
   components: {
     Star,
   },
-    
-  created() {},
 
   methods: {
     goBack() {

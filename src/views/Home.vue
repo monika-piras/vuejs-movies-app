@@ -51,7 +51,6 @@ export default {
     };
   },
   mounted() {
-  //  console.log("mounted");
     this.getMoviesAllData();
   },
 
@@ -72,7 +71,7 @@ export default {
 
     getMoviesAllData() {
       this.getMoviesRatingAverage();
-      console.log("MoviesRatingAverage-->>", this.moviesRatingAverage);
+    //  console.log("MoviesRatingAverage-->>", this.moviesRatingAverage);
 
       for (const x of this.moviesRatingAverage) {
         for (const i of x) {
