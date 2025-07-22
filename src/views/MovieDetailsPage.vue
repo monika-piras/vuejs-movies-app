@@ -39,20 +39,9 @@
               class="mediaImg"
             />
           </div>
-          <div class="buttonTrailer">
-            <b-button btn btn-primary v-b-modal.modal-1>
-              <b-icon-play-fill></b-icon-play-fill>TRAILER</b-button
-            >
-            <b-modal id="modal-1" hide-footer>
-              <iframe
-                width="100%"
-                height="315"
-                v-bind:src="filmDetail.trailerPath"
-                frameborder="0"
-                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe>
-            </b-modal>
+          <div class="buttonSite">
+            <b-button btn btn-primary v-on:click="goToOfficialSite(filmDetail.officialSite)">
+              <b-icon-gear-fill></b-icon-gear-fill>OFFICIAL SITE</b-button>
           </div>
           <div class="buttonPreferiti">
             <button
@@ -86,6 +75,9 @@ export default {
     backgroundImageFunc(filmDetail){
       return filmDetail.imageCustom ? filmDetail.imageCustom : filmDetail.image.medium;
     },
+    goToOfficialSite(site) {
+       window.open(site, '_blank');
+    }
   },
 
   computed: {
@@ -165,7 +157,7 @@ a:first-child {
   top: 0;
   z-index: -1;
 }
-.buttonTrailer,
+.buttonSite,
 .buttonPreferiti {
   margin-top: 30px;
 }
