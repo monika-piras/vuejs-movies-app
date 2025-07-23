@@ -83,9 +83,11 @@ export default {
         this.isButtonLeftActive = true;
       }
     },
+    
     less() {
       this.$el.querySelector(".scrollable").scrollLeft += -300;
     },
+
     updateListToDisplay() {
       if (this.category) {
         this.filmsToDisplay = this.filmList.filter((item) =>
