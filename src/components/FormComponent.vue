@@ -117,13 +117,13 @@
       </div>
 
       <div class="form-group align-left">
-        <label class="left" for="inlineFormInput4">Trailer</label>
+        <label class="left" for="inlineFormInput4">Official Website</label>
         <input
           type="text"
           class="form-control mb-2"
           id="inlineFormInput4"
-          v-model="trailer"
-          placeholder="trailer embeded code"
+          v-model="website"
+          placeholder="official website link"
         />
       </div>
 
@@ -166,7 +166,7 @@ export default {
       prefer: false,
       imageCustom: null,
       isErrorImage: false,
-      trailer: null,
+      website: null,
       imageBase64: null,
       id: Math.random() * 10,
     };
@@ -245,7 +245,7 @@ export default {
         language: this.language,
         prefer: this.prefer,
         imageCustom: this.imageCustom ? this.imageCustom : this.imageBase64,
-        trailerPath: this.trailer,
+        websitePath: this.website,
         id: this.id,
       };
 

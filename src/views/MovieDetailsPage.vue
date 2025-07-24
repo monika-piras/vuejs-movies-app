@@ -40,7 +40,7 @@
             />
           </div>
           <div class="buttonSite">
-            <b-button btn btn-primary v-on:click="goToOfficialSite(filmDetail.officialSite)">
+            <b-button btn btn-primary v-on:click="goToOfficialSite(filmDetail.officialSite ? filmDetail.officialSite : filmDetail.websitePath)">
               <b-icon-gear-fill></b-icon-gear-fill>OFFICIAL SITE</b-button>
           </div>
           <div class="buttonPreferiti">
