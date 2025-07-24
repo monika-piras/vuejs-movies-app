@@ -47,7 +47,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  base: '/vuejs-movies-example',
+  base: '/vuejs-movies-app',
   linkExactActiveClass: "active",
   routes,
   mode: 'hash'

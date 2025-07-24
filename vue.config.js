@@ -1,5 +1,5 @@
 module.exports = {
-    publicPath: '/vuejs-movies-example/',
+    publicPath: '/vuejs-movies-app/',
     configureWebpack: {
         devtool: 'source-map'
     }
