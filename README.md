@@ -11,7 +11,7 @@ This way you will never miss any movie again because you will have your list alw
 
 #### Description:
 
-This project is an example about how to build a responsive and mobile friendly website with [VueJS]. It retrieves the data with an api call from [TVMaze] Free Public API and updates its internal state of the application store.
+This project is an example about how to build a responsive and mobile friendly website with [VueJS]. It retrieves the data with an api call from [TVMaze] Free Public API (https://api.tvmaze.com/shows) and updates its internal state of the application store.
 
 This project wants to be a similar representation of the most popular and cool streaming movie websites like NetFlix/Amazon Prime.
 This is only for didactic and private purposes, in order to show acquired abilities to reproduce and create professional content websites.
